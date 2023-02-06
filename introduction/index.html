@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Javascript - Ecmascript 2023-02-06</title>
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script>
+        /**
+         * 
+         * Commentaires en bloc
+         * 
+        */
+
+        // commentaire en une ligne
+        var prenom = 'Jean';
+        console.log('var prenom : ', prenom); 
+        console.log('var prenom : ' + prenom + ', c\'est cool');    // INTERDIT
+        console.log(`var prenom : ${prenom}, c'est cool`);          // interpolation de texte
+        
+        function affPrenom(){
+            console.log(prenom);
+            prenom = 'Jon';
+        }
+        
+        affPrenom();
+        console.log(`var prenom : ${prenom}, c'est cool`);
+
+        let nom = 'Neige';
+        console.log(nom);
+        
+        function affNom(){
+            let nom = 'Sno';
+            console.log(nom);
+        }
+        
+        affNom();
+        console.log(nom);
+
+        const HOSTFR = '127.0.0.1';
+        const HOSTEN = '127.0.0.2';
+        const HOSTES = '127.0.0.3';
+        const USERADMIN = 'admin@test.fr';
+        const USERCLIENT = 'johnDoe@test.fr';
+
+        function connect(host, user){
+            //code de la fonction
+        }
+
+        connect('127.0.0.1', 'admin@test.fr');
+        connect(HOSTEN, USERCLIENT);
+
+        //HOSTEN = 'rrr'; /* INTERDIT : une variable ne doit pas changer de contenu dans le script !!!!!!! */
+
+        console.log(typeof nom);
+        
+        let unNombre = 15;
+        console.log(typeof unNombre);
+        
+        let unNombreString = '12.5';
+        console.log(typeof unNombreString);
+        unNombre = parseInt(unNombreString);
+        console.log(typeof unNombre, unNombre);
+        unNombre = parseFloat(unNombreString);
+        console.log(typeof unNombre, unNombre);
+
+        let unObjetLiteral = {
+            unNombre: 42,
+            duTexte: 'Coucou',
+            hello: function(){
+                console.log('hello world');
+            }
+        };
+
+        console.log(unObjetLiteral);
+        console.log(unObjetLiteral.duTexte);
+        console.log(unObjetLiteral.unNombre);
+        console.log(unObjetLiteral.hello);
+        unObjetLiteral.hello();
+
+        /**
+         * JS est un langage prototypé => hérité ou étant objet
+        */
+
+        /**
+         * 
+         * JS est un langage "non typé"
+         * le type des variables et définie par leur contenu
+         * 
+         * Types
+         * [primitifs]
+         * number           -> nombre entier et à virgule flottante
+         * bool             -> Booléen
+         * 
+         * [références]
+         * 
+         * String           -> chaîne de caractères
+         * Array            -> tableau de données
+         * Object           -> objets
+         * JSON             -> JavaScript Object Notation
+         * 
+        */
+
+        let unObjetLiteral2 = {
+            unNombre: 42,
+            duTexte: 'Coucou'
+        };
+
+        let unObjetJSon = {
+            'unNombre': 42,
+            'duTexte': 'Coucou',
+            'adresse': {
+                'rue': 'nom de la rue',
+                'ville': 'nom de la ville',
+                'geoloc': {
+                    'lat': 'lsdfkv,dfm',
+                    'long': 'scjdfhjk'
+                }
+            }
+        };
+
+        console.log(unObjetJSon.adresse.geoloc.lat);
+
+        /* Opérateurs */
+        /**
+         * 
+         * Mathématiques
+         * 
+         * +    (addition /!\ ATTENTION aussi utilisé pour la concaténatoin )
+         * -    soustraction
+         * /    division
+         * %    modulo (le reste d'une division entière)
+         *      5%2 => on retrouve 2 deux fois et il reste 1 => 5%2 = 1
+         * *    multiplication
+         * **   puissance, remplace Math.pow()
+         * 2 puissance 8 => Math.pow(2, 8)
+         *                  2**8
+         * Incrémentation / Décrémentation
+         * ++ / --
+         * variable++ variable--
+         * ++variable --variable
+         * 
+        */
+
+        let nbInc = 11;
+        console.log('nbInc', nbInc);    // affiche 11
+        console.log('nbInc', nbInc++);  // affiche 11
+        console.log('nbInc', nbInc);    // affiche 12
+        console.log('nbInc', ++nbInc);    // affiche 13
+
+        /**
+         * Logiques
+         * 
+         * &&       (ET)
+         * ||       (OU)
+         * a || b   => si a   || !b  =>  true
+         *          => si !a  || b  =>   true
+         *          => si a   || b   =>  true
+         *          => si !a  || !b =>   false 
+         * 
+         * !        (NON)
+         * a = true => !a = false
+         * ^ (OU EXCLUSIF BINAIRE => XOR)
+         * a = true et b = true
+         * a ^ b    => si a  ^ !b  =>  true
+         *          => si !a ^ b  =>   true
+         *          => si a  ^ b   =>  false
+         *          => si !a ^ !b =>   false
+         * 
+         * Comparaison
+         * < > <= >=
+         * 
+         * == !=    => comparatif de valeur laxiste (ne compare que la valeur, pas le type de la valeur)
+         * 2 == 2   => vrai
+         * 2 == '2' => vrai
+         * 
+         * === !==      => comparatif de valeur stricte (compare la valeur et le type de la valeur)
+         * 2 === 2      => vrai
+         * 2 === '2'    => faux même valeur mais type de valeur différent (nombre contre chaine de caractère)
+         * 
+        */
+
+        /* yoda code : comparer le non variable au variable au lieu de comparer le variable au non variable */
+
+        /*
+        // en java
+        String a = 'Chaîne';
+        a.equal('Chaîne'); // retourne true
+        
+        String b = null;
+        b.equal('Chaîne'); // retourne une erreur de type NullPointerException
+
+        // en yoda code pour éviter l'erreur et avoir le résultat du test
+        'Chaîne'.equal(b); // retourne false
+
+        */
+
+        
+        
+    </script>
+</head>
+<body>
+    <header class="bg-dark" data-bs-theme="dark">
+        <div class="container">
+            <h1 class="mb-0">
+                Formation Javascript - Ecmascript 2023-02-06
+            </h1>
+        </div>
+    </header>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="../">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Introduction
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../introduction/index.html">Intro</a></li>
+                            <li><a class="dropdown-item" href="../introduction/tableaux.html">Tableaux</a></li>
+                            <li><a class="dropdown-item" href="../introduction/fonctions.html">Fonctions</a></li>
+                            <li><a class="dropdown-item" href="../introduction/destructuration.html">Destructuration</a>
+                            </li>
+                            <li><a class="dropdown-item" href="../introduction/storage.html">Storage</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <section class="row">
+            <article class="col">
+                <header>
+                    <h2>Variables & Opérateurs</h2>
+                </header>
+                <main>
+                    <h3>Ecmascript</h3>
+                    <p>
+                        Ecmascript (es) est une norme sur laquelle s'appuie JS. (ActionScript => flash, TypeScript).
+                    </p>
+                    <p>
+                        La dernière norme ecmascript es7 (2017, très peu de différences avec es6)
+                    </p>
+                    <ul>
+                        <li>es1 - 1997</li>
+                        <li>es2 - 1999</li>
+                        <li>es4 - version abandonnée</li>
+                        <li>es5 - 2009</li>
+                        <li>es6 - 2015</li>
+                        <li>es7 - 2017</li>
+                    </ul>
+                    <p>
+                        Jusqu'en 2010, JS était mal considéré par les développeurs ( peu normé, trop permissif )
+                    </p>
+                    <p>
+                        L'arrivée de Google Chrome, avec en plus l'envie de Google de refaire fonctionner correctement
+                        JS.
+                        Création du moteur d'interprétation V8.
+                        => un boost des capacitées de JS et son éxécution
+                    </p>
+                    <p>
+                        Grâce au V8, des nouveau langages ou méthodes de développement sont arrivées, notemment NodeJs
+                        (2009),
+                        qui s'appuis sur JS mais s'éxécute sur le serveur
+                    </p>
+                    <p>
+                        La convention du code en es6 est visible sur Github
+                        <a href="https://github.com/elierotenberg/coding-styles/blob/master/es6.md" target="_blank">
+                            es6
+                        </a>
+                    </p>
+            </article>
+        </section>
+    </main>
+    <footer class="bg-dark text-white">
+        <div class="container">
+            &copy; Dawan 2023
+        </div>
+    </footer>
+</body>
+
+</html>
