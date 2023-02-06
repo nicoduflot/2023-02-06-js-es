@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Javascript - Ecmascript 2023-02-06</title>
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script>
+        /* Avant es6 */
+        /*
+        var tableau = new Array('valeur', 1, 12.3);
+        console.log(tableau);
+        */
+        
+        let cars = ['Peugeot', 'Citroën', 'Renault'];
+        console.log(cars);
+        console.log(cars.length);
+        console.log(cars.join(', '));
+        console.log(`le tableau cars contient ${cars.length} élément(s) : ${cars}`);
+        console.table(cars);
+
+        /* les tableaux sont en fait des objets itérables */
+        /* on peut donc utiliser des boucles de scripts pour parcourir les valeur qu'ils contiennent */
+
+        /* la boucle Pour (for) */
+
+        console.log('---------------- boucle for ------------------');
+        /*
+        pour la variable i à 0, jusqu'a i strictement inférieur au nobre d'élément du tableau, par pas de 1 faire
+        // code de la boucle
+        fin pour
+        */
+       
+       for(let i = 0; i < cars.length; i++){
+           console.log(`la valeur à l'index ${i} est ${cars[i]}`);
+        }
+        
+        console.log('---------------- boucle for in ------------------');
+        /*
+        pour une variable récupérant l'index du tableau, faire
+        // code de la boucle
+        fin pour
+        */
+       
+       for(let index in cars){
+           console.log(`la valeur à l'index ${index} est ${cars[index]}`);
+        }
+        
+        /* le for in permet aussi de parcourir les objets */
+        
+        console.log('---------------- boucle for in objet ------------------');
+        let obj = {
+            nom: 'Duflot',
+            prenom: 'Nicolas',
+            age: 42,
+            presentation: function(){
+                return `Bonjour, je m'appelle ${this.prenom} ${this.nom} et j'ai ${this.age} ans`;
+            },
+            adresse: {
+                ville: 'Lille',
+                cp: 59000
+            }
+        };
+        
+        console.log(obj.presentation());
+        
+        for(let key in obj){
+            //if('object' !== typeof obj[key]){
+                console.log(`${key} contient ${obj[key]} du type ${typeof obj[key]}`);
+                /*}else{
+                    console.log(`${key} est un ${typeof obj[key]} qui contient : `);
+                    for(let subKey in obj[key]){
+                        console.log(`${subKey} contient ${obj[key][subKey]} du type ${typeof obj[key][subKey]}`);
+                    }
+                }*/
+            }
+            
+            /* depuis es6 for of */
+            /*
+            pour la variable courante dans le tableau, fair
+            // code
+            fin pour
+            */
+           
+            console.log('---------------- boucle for of ------------------');
+            for(let value of cars){
+                console.log(`la valeur actuelle dans cars est ${value}`);
+            }
+
+            
+
+            
+    </script>
+</head>
+<body>
+    <header class="bg-dark" data-bs-theme="dark">
+        <div class="container">
+            <h1 class="mb-0">
+                Formation Javascript - Ecmascript 2023-02-06
+            </h1>
+        </div>
+    </header>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="../">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Introduction
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../introduction/index.html">Intro</a></li>
+                            <li><a class="dropdown-item" href="../introduction/tableaux.html">Tableaux</a></li>
+                            <li><a class="dropdown-item" href="../introduction/fonctions.html">Fonctions</a></li>
+                            <li><a class="dropdown-item" href="../introduction/destructuration.html">Destructuration</a>
+                            </li>
+                            <li><a class="dropdown-item" href="../introduction/storage.html">Storage</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <section class="row">
+            <article class="col">
+                <header>
+                    <h2>Les tableaux</h2>
+                </header>
+                <main>
+                    <h3>Ecmascript</h3>
+                    <p>
+                        Tout est dans la console.
+                    </p>
+            </article>
+        </section>
+    </main>
+    <footer class="bg-dark text-white">
+        <div class="container">
+            &copy; Dawan 2023
+        </div>
+    </footer>
+</body>
+
+</html>
