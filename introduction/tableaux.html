@@ -13,7 +13,7 @@
         console.log(tableau);
         */
         
-        let cars = ['Peugeot', 'Citroën', 'Renault'];
+        let cars = ['Peugeot', 'Citroën', 'Ford', 'Renault'];
         console.log(cars);
         console.log(cars.length);
         console.log(cars.join(', '));
@@ -87,9 +87,117 @@
             for(let value of cars){
                 console.log(`la valeur actuelle dans cars est ${value}`);
             }
+            
+            /* boucles tant que, faire tant que */
+            console.log('---------------- boucle while ------------------');
+            /*
+            tant que la condition n'est pas atteinte, faire
+            // code de la boucle
+            fin tant que
+            */
+           let cpt = 0;
+           while(cpt < cars.length){
+               console.log(`cpt : ${cpt}, cars[${cpt}] : ${cars[cpt]}`);
+               cpt++;
+            }
+            
+            console.log('---------------- boucle do while ------------------');
+            /*
+            faire
+            // code
+            tant que le test d'arrêt n'est pas atteint
+            */
+           cpt = 0;
+           do{
+               console.log(`cpt : ${cpt}, cars[${cpt}] : ${cars[cpt]}`);
+               cpt++;
+            }while(cpt < cars.length)
+            
+            console.log('---------------- sortir prématurément d\'une boucle ------------------');
+            
+            cpt = 0;
+            do{
+                if('Ford' === cars[cpt]){
+                    console.log(`Ford est à l'index ${cpt}`);
+                    break;
+                }
+                cpt++;
+            }while(cpt < cars.length)
+            
+            console.log('cpt :', cpt);
+            
+            /* l'objet tableau possède des méthodes de parcours */
+            /* .map() */
+            /* la méthode .map() va récupérer la valeur, l'index et le contenu entier du tableau, qu'on pourra exploiter dans une fonction de rappel */
+            console.log('---------------- .map() méthode propre aux tableaux ------------------');
+            cars.map(function(value, index, tab){
+                console.log('coucou', value, index, tab);
+            });
+            
+            let numbers = [1, 23, 45, 69];
+            console.log(numbers);
+            numbers.map(function(value, index, tab){
+                console.log(value, index, tab);
+                tab[index] = value * 0.9;
+                console.log(value, index, tab);
+            });
+            console.log(numbers);
+            
+            /* la méthode forEach() fonctionne comme .map() à la différence qu'elle est applicable à tous les objets itérables ( Map(), Set() )*/
+            
+            cars.forEach(function(value, index, tab){
+                console.log(value, index, tab);
+            });
+            
+            /**
+             * es6 .entries()
+             * modèle objet 
+             * renvoi chaque élément du tableau sous la forme d'un tableau qui contient
+             * - en 0 l'index de l'élément, 
+             * - en 1 la valeur de l'élément
+             */
+            
+            console.log('---------------- .entries() ------------------');
+            for(let entry of cars.entries()){
+                console.log(entry);
+            }
+            
+            console.log('---------------- .keys() ------------------');
+            for(let key of cars.keys()){
+                console.log(key, cars[key]);
+            }
+
+            /* ajouter des éléments dans un tableau */
+
+            cars[cars.length] = 'Hyundai'; /* ça marche mais c'est ni beau ni propre, non merci */
+
+            cars.push('Seat');
+            cars.push('Fiat', 'Toyota');
+            console.log(cars);
+
+            /* .pop() : extrait le dernier élément d'un tableau */
+
+            let lastEntry = cars.pop();
+            console.log(cars, lastEntry);
+
+            /* .shift() : extrait le premier élément du tableau et réorganise les index */
+
+            let firstEntry = cars.shift();
+            console.log(cars, firstEntry);
+
+            /* .splice() 1 : extraire des éléments du tableau sous forme d'un tableau  */
+            let tabRemoved = cars.splice(1, 2);
+            console.log(cars, tabRemoved);
+
+            /* .splice() 2 : remplacer des éléments du tableau par d'autres élément (et les récupérer sous forme de tableau)  */
+            let tabReplaced = cars.splice(cars.indexOf('Citroën'), 2, 'Alpine', 'Mazda', 'Kya');
+            console.log(cars, tabReplaced);
+
+            /* .splice() 3 : inserrer des éléments dans un tableau  */
+            cars.splice(cars.indexOf('Mazda'), 0, lastEntry, firstEntry, tabRemoved[0], tabRemoved[1], tabReplaced[0], tabReplaced[1]);
+            console.log(cars);
 
             
-
             
     </script>
 </head>
