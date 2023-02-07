@@ -278,9 +278,9 @@
         let tab2d = [['a', 'b', 'c'], [12, 13, 12, 15, 14], [10, 23, 56, 4]];
         console.table(tab2d);
 
-        for(tab of tab2d){
+        for (tab of tab2d) {
             console.log(tab);
-            for(value of tab){
+            for (value of tab) {
                 console.log(value);
             }
         }
@@ -298,12 +298,12 @@
             }
             */
         });
-        
+
         console.log(found);
         /* pour récupérertous les éléments correpsondant à une condition .filter() */
         console.log('--------- .find() ------------');
 
-        let foundAll = arrayNum.filter(function(element){
+        let foundAll = arrayNum.filter(function (element) {
             return 20 < element;
         });
 
@@ -327,7 +327,7 @@
         response => response.json()
 
         */
-        
+
         let foundAll2 = arrayNum.filter(element => 20 < element);
 
         console.log(foundAll2);
@@ -436,9 +436,34 @@
         legumeDoublons.set('brocoli', 1);
 
         console.log(legumeDoublons.get('fraise'));
+        /*
+        
+        let tabData = [];
+        dataLayer.forEach(function(element){
+            if(element.event === 'pageview'){
+                //console.log(element);
+                tabData['lang'] = element.env.language;
+                tabData['redirect'] = element.search.redirect;
+            }
+        });
+        console.log(tabData);
 
+        let tabRcPage = [];
+        let allPrd = document.querySelectorAll('div.product_t2s[data-rc]');
+        allPrd.forEach(function(element){
+            console.log(element.dataset.rc);
+            tabRcPage.push(element.dataset.rc);
+            element.addEventListener('click', function(event){
+                event.preventDefault();
+                event.stopPropagation();
+                console.log(element.dataset.rc);
+            });
+        });
+        console.log(tabRcPage);
         
-        
+        */
+
+
 
     </script>
 </head>

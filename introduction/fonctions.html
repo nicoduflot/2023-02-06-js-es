@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Javascript - Ecmascript 2023-02-06</title>
+    <link rel="stylesheet" href="../css/bootstrap.css" />
+    <script src="../js/bootstrap.bundle.js"></script>
+    <script>
+        /*
+        il existe  deux types de fonction : les fonctions et les méthodes : 
+            - les méthodes sont des fonctions déclarées et utilisées via : 
+                - des instances de classe (objets créés par cette classe)
+                - la classe directement quand cette méthode est statique dans la classe
+            - les fonctions sont déclarées dans le programme ou dans un script.
+                Elle sont utilisables directement sans passer par des objets
+
+        de base, on utilise le mot clef function, puis le nom de la fonction, des parenthèses pour les paramètres (qu'il y en ait ou non)
+        enfin des acolades dans lequelles on a le code de la fonction
+
+        Les fonctions peuvent retourner un résultat ou directement agir sans retour vers l'appel de la fonction.
+        
+        fonction "simple" (sans paramètres d'appel) 
+        */
+
+        function helloWorld(){
+            return 'Hello World';
+        }
+
+        let test = helloWorld();
+        console.log(test);
+        console.log(helloWorld());
+
+        /*
+        fonction avec des variables en paramètre
+        l'écriture @param permet de définir à l'utilisateur de la fonction
+        le type des arguments attendus
+        */
+
+        /**
+         * @param {string} prenom
+         * @param {string} nom
+         * @param {number} age
+        */
+        function helloYou(prenom = 'John', nom = 'Doe', age = Math.floor(Math.random()*20)){
+            return `Hello ${prenom} ${nom}, looking good for a ${age} years old !`;
+        }
+
+        console.log(helloYou('Nicolas', 'Duflot', 42));
+
+        console.log(helloYou());
+
+        /*
+        quand on utilise sur un tableau la méthode .push()
+        let tab = [];
+        tab.push('ha ha');
+        tab.push('hi hi', 'ho ho');
+        => tab n'admet en fait qu'un seul paramètre, mais c'est un type particulier de paramètre => il utilise un 
+        opérateur variadique ou aussi appelé spread parameter
+
+        tab.push('a', 'b', 'c') => 
+        les paramètres a, b et c sont traité les uns après les autres, sous la forme ['a', 'b', 'c']
+
+        l'opérateur variadique, indiqué devant une variable d'appel de fonction transforme TOUTES les variables écrite en un tableau de valeur
+
+        function maFonction(variable, ...valeurs){
+            valeurs.forEach(function(element){
+                // traitement des valeurs ...valeurs
+            });
+        }
+
+        /!\ ATTENTION /!\
+        L'opérateur variadique ne peut être utilisé qu'une fois par appel de fonction et en tout dernier
+
+        function maFonction(42, 'a', 'b', 'c');
+
+        créer une fonction addition qui reçoit x paramètres et renvoi le résultat de l'addition des tous ces paramètres
+
+        */
+
+        function addition(...valeurs){
+            //console.log(valeurs);
+            let resultat = 0;
+            for(value of valeurs){
+                /*
+                if(parseFloat(value)){
+                    resultat = resultat + parseFloat(value);
+                }
+                */
+                /*
+                ternaire 
+                (condition a vérifier)? action a faire si condition vérifiée : action a faire si condition non vérifiée;
+                */
+               resultat = resultat + ((parseFloat(value))? parseFloat(value): 0);
+               //resultat += ((parseFloat(value))? parseFloat(value): 0); // short hand property : a += b pour dire a = a + b;
+               // depuis es6 il est recommandé d'éviter ce type d'écriture
+            }
+            return resultat;
+        }
+
+        console.log(addition(12, 65, 23));
+        console.log(addition(12, 65, 23.3, 1, 2, 3, 4));
+        console.log(addition(12, 65, '23.3', 1, 2, 3, 4, 'coucou'));
+
+        /*
+        let valeurN;
+        console.log(valeurN);
+        valeurN = null;
+        console.log(valeurN);
+        */
+ 
+        /*
+        let valeurX;
+        if(valeurX){
+            console.log('OK');
+        }else{
+            console.log('POK');
+        }
+        */
+ 
+        /*
+        let obj = {};
+ 
+        console.log(obj !== undefined);
+        */
+
+        /*
+        la structure de test try - catch permet de tester l'éxécution d'une fonction ou de code,
+        si cela fonctionne on sort du try après avoir éxécuté son code, si dans le try une erreur est relevée, 
+        elle est envoyée dans le catch, il faut donc la récupérer dans une variable qui est ensuite 
+        affichable
+        */
+
+        function testTryCatch(nom, prenom, age){
+            if(18 > age){
+                let res = 'personne mineure';
+            }else{
+                let res = 'personne majeure';
+            }
+            return res;
+        }
+
+        try {
+            console.log(testTryCatch('Duflot', 'Nicolas', 42));
+        }catch(erreur){
+            console.log('l\'erreur',erreur);
+            console.log('son nom', erreur.name);
+            console.log('son message', erreur.message);
+            console.log('les informations de fichier \net de ligne qui déclenchent l\'erreur\n',erreur.stack);
+            let message = 'Il y a un bug';
+            console.error(message);
+        }
+        finally{
+            console.log('test de la fonction finie');
+        }
+
+        /*
+        fonction de rappel ou callback function ou fonction anonyme
+        */
+
+        let maFonctionAnonyme = function(name = null){
+            if(null === name){
+                return 'Hello Kitty';
+            }else{
+                return `Hello ${name}`;
+            }
+        };
+
+        console.log(maFonctionAnonyme());
+        console.log(maFonctionAnonyme('Nicolas'));
+
+        /*
+        on peut lancer une fonction anonyme sans avoir besoin de la mettre dans une variable
+        il faut utiliser une structure particulière, la fonction devient
+        une fonction auto-éxecutée
+        (la fonction anonyme)(les paramètre si besoin de la fonction)
+        (function(param){
+            //code
+        })(valeur de param)
+        */
+
+        (
+            function(name = null){
+                if(null === name){
+                    console.log('Hello Kitty');
+                }else{
+                    console.log(`Hello ${name}`);
+                }
+            }
+        )('toto');
+
+
+
+    </script>
+</head>
+
+<body>
+    <header class="bg-dark" data-bs-theme="dark">
+        <div class="container">
+            <h1 class="mb-0">
+                Formation Javascript - Ecmascript 2023-02-06
+            </h1>
+        </div>
+    </header>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+        <div class="container">
+            <a class="navbar-brand" href="../">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Introduction
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../introduction/index.html">Intro</a></li>
+                            <li><a class="dropdown-item" href="../introduction/tableaux.html">Tableaux</a></li>
+                            <li><a class="dropdown-item" href="../introduction/fonctions.html">Fonctions</a></li>
+                            <li><a class="dropdown-item" href="../introduction/destructuration.html">Destructuration</a>
+                            </li>
+                            <li><a class="dropdown-item" href="../introduction/storage.html">Storage</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        <section class="row">
+            <article class="col">
+                <header>
+                    <h2>Les fonctions</h2>
+                </header>
+                <main>
+                    <p>
+                        Tout est dans la console.
+                    </p>
+            </article>
+        </section>
+    </main>
+    <footer class="bg-dark text-white">
+        <div class="container">
+            &copy; Dawan 2023
+        </div>
+    </footer>
+</body>
+
+</html>
