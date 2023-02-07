@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,7 @@
         var tableau = new Array('valeur', 1, 12.3);
         console.log(tableau);
         */
-        
+
         let cars = ['Peugeot', 'Citroën', 'Ford', 'Renault'];
         console.log(cars);
         console.log(cars.length);
@@ -31,30 +32,30 @@
         // code de la boucle
         fin pour
         */
-       
-       for(let i = 0; i < cars.length; i++){
-           console.log(`la valeur à l'index ${i} est ${cars[i]}`);
+
+        for (let i = 0; i < cars.length; i++) {
+            console.log(`la valeur à l'index ${i} est ${cars[i]}`);
         }
-        
+
         console.log('---------------- boucle for in ------------------');
         /*
         pour une variable récupérant l'index du tableau, faire
         // code de la boucle
         fin pour
         */
-       
-       for(let index in cars){
-           console.log(`la valeur à l'index ${index} est ${cars[index]}`);
+
+        for (let index in cars) {
+            console.log(`la valeur à l'index ${index} est ${cars[index]}`);
         }
-        
+
         /* le for in permet aussi de parcourir les objets */
-        
+
         console.log('---------------- boucle for in objet ------------------');
         let obj = {
             nom: 'Duflot',
             prenom: 'Nicolas',
             age: 42,
-            presentation: function(){
+            presentation: function () {
                 return `Bonjour, je m'appelle ${this.prenom} ${this.nom} et j'ai ${this.age} ans`;
             },
             adresse: {
@@ -62,186 +63,386 @@
                 cp: 59000
             }
         };
-        
+
         console.log(obj.presentation());
-        
-        for(let key in obj){
+
+        for (let key in obj) {
             //if('object' !== typeof obj[key]){
-                console.log(`${key} contient ${obj[key]} du type ${typeof obj[key]}`);
-                /*}else{
-                    console.log(`${key} est un ${typeof obj[key]} qui contient : `);
-                    for(let subKey in obj[key]){
-                        console.log(`${subKey} contient ${obj[key][subKey]} du type ${typeof obj[key][subKey]}`);
-                    }
-                }*/
-            }
-            
-            /* depuis es6 for of */
-            /*
-            pour la variable courante dans le tableau, fair
-            // code
-            fin pour
-            */
-           
-            console.log('---------------- boucle for of ------------------');
-            for(let value of cars){
-                console.log(`la valeur actuelle dans cars est ${value}`);
-            }
-            
-            /* boucles tant que, faire tant que */
-            console.log('---------------- boucle while ------------------');
-            /*
-            tant que la condition n'est pas atteinte, faire
-            // code de la boucle
-            fin tant que
-            */
-           let cpt = 0;
-           while(cpt < cars.length){
-               console.log(`cpt : ${cpt}, cars[${cpt}] : ${cars[cpt]}`);
-               cpt++;
-            }
-            
-            console.log('---------------- boucle do while ------------------');
-            /*
-            faire
-            // code
-            tant que le test d'arrêt n'est pas atteint
-            */
-           cpt = 0;
-           do{
-               console.log(`cpt : ${cpt}, cars[${cpt}] : ${cars[cpt]}`);
-               cpt++;
-            }while(cpt < cars.length)
-            
-            console.log('---------------- sortir prématurément d\'une boucle ------------------');
-            
-            cpt = 0;
-            do{
-                if('Ford' === cars[cpt]){
-                    console.log(`Ford est à l'index ${cpt}`);
-                    break;
+            console.log(`${key} contient ${obj[key]} du type ${typeof obj[key]}`);
+            /*}else{
+                console.log(`${key} est un ${typeof obj[key]} qui contient : `);
+                for(let subKey in obj[key]){
+                    console.log(`${subKey} contient ${obj[key][subKey]} du type ${typeof obj[key][subKey]}`);
                 }
-                cpt++;
-            }while(cpt < cars.length)
-            
-            console.log('cpt :', cpt);
-            
-            /* l'objet tableau possède des méthodes de parcours */
-            /* .map() */
-            /* la méthode .map() va récupérer la valeur, l'index et le contenu entier du tableau, qu'on pourra exploiter dans une fonction de rappel */
-            console.log('---------------- .map() méthode propre aux tableaux ------------------');
-            cars.map(function(value, index, tab){
-                console.log('coucou', value, index, tab);
-            });
-            
-            let numbers = [1, 23, 45, 69];
-            console.log(numbers);
-            numbers.map(function(value, index, tab){
-                console.log(value, index, tab);
-                tab[index] = value * 0.9;
-                console.log(value, index, tab);
-            });
-            console.log(numbers);
-            
-            /* la méthode forEach() fonctionne comme .map() à la différence qu'elle est applicable à tous les objets itérables ( Map(), Set() )*/
-            
-            cars.forEach(function(value, index, tab){
-                console.log(value, index, tab);
-            });
-            
-            /**
-             * es6 .entries()
-             * modèle objet 
-             * renvoi chaque élément du tableau sous la forme d'un tableau qui contient
-             * - en 0 l'index de l'élément, 
-             * - en 1 la valeur de l'élément
-             */
-            
-            console.log('---------------- .entries() ------------------');
-            for(let entry of cars.entries()){
-                console.log(entry);
+            }*/
+        }
+
+        /* depuis es6 for of */
+        /*
+        pour la variable courante dans le tableau, fair
+        // code
+        fin pour
+        */
+
+        console.log('---------------- boucle for of ------------------');
+        for (let value of cars) {
+            console.log(`la valeur actuelle dans cars est ${value}`);
+        }
+
+        /* boucles tant que, faire tant que */
+        console.log('---------------- boucle while ------------------');
+        /*
+        tant que la condition n'est pas atteinte, faire
+        // code de la boucle
+        fin tant que
+        */
+        let cpt = 0;
+        while (cpt < cars.length) {
+            console.log(`cpt : ${cpt}, cars[${cpt}] : ${cars[cpt]}`);
+            cpt++;
+        }
+
+        console.log('---------------- boucle do while ------------------');
+        /*
+        faire
+        // code
+        tant que le test d'arrêt n'est pas atteint
+        */
+        cpt = 0;
+        do {
+            console.log(`cpt : ${cpt}, cars[${cpt}] : ${cars[cpt]}`);
+            cpt++;
+        } while (cpt < cars.length)
+
+        console.log('---------------- sortir prématurément d\'une boucle ------------------');
+
+        cpt = 0;
+        do {
+            if ('Ford' === cars[cpt]) {
+                console.log(`Ford est à l'index ${cpt}`);
+                break;
             }
-            
-            console.log('---------------- .keys() ------------------');
-            for(let key of cars.keys()){
-                console.log(key, cars[key]);
-            }
+            cpt++;
+        } while (cpt < cars.length)
 
-            /* ajouter des éléments dans un tableau */
+        console.log('cpt :', cpt);
 
-            cars[cars.length] = 'Hyundai'; /* ça marche mais c'est ni beau ni propre, non merci */
+        /* l'objet tableau possède des méthodes de parcours */
+        /* .map() */
+        /* la méthode .map() va récupérer la valeur, l'index et le contenu entier du tableau, qu'on pourra exploiter dans une fonction de rappel */
+        console.log('---------------- .map() méthode propre aux tableaux ------------------');
+        cars.map(function (value, index, tab) {
+            console.log('coucou', value, index, tab);
+        });
 
-            cars.push('Seat');
-            cars.push('Fiat', 'Toyota');
-            console.log(cars);
+        let numbers = [1, 23, 45, 69];
+        console.log(numbers);
+        numbers.map(function (value, index, tab) {
+            console.log(value, index, tab);
+            tab[index] = value * 0.9;
+            console.log(value, index, tab);
+        });
+        console.log(numbers);
 
-            /* .pop() : extrait le dernier élément d'un tableau */
+        /* la méthode forEach() fonctionne comme .map() à la différence qu'elle est applicable à tous les objets itérables ( Map(), Set() )*/
 
-            let lastEntry = cars.pop();
-            console.log(cars, lastEntry);
+        cars.forEach(function (value, index, tab) {
+            console.log(value, index, tab);
+        });
 
-            /* .shift() : extrait le premier élément du tableau et réorganise les index */
+        /**
+         * es6 .entries()
+         * modèle objet 
+         * renvoi chaque élément du tableau sous la forme d'un tableau qui contient
+         * - en 0 l'index de l'élément, 
+         * - en 1 la valeur de l'élément
+         */
 
-            let firstEntry = cars.shift();
-            console.log(cars, firstEntry);
+        console.log('---------------- .entries() ------------------');
+        for (let entry of cars.entries()) {
+            console.log(entry);
+        }
 
-            /* .splice() 1 : extraire des éléments du tableau sous forme d'un tableau  */
-            let tabRemoved = cars.splice(1, 2);
-            console.log(cars, tabRemoved);
+        console.log('---------------- .keys() ------------------');
+        for (let key of cars.keys()) {
+            console.log(key, cars[key]);
+        }
 
-            /* .splice() 2 : remplacer des éléments du tableau par d'autres élément (et les récupérer sous forme de tableau)  */
-            let tabReplaced = cars.splice(cars.indexOf('Citroën'), 2, 'Alpine', 'Mazda', 'Kya');
-            console.log(cars, tabReplaced);
+        /* ajouter des éléments dans un tableau */
 
-            /* .splice() 3 : inserrer des éléments dans un tableau  */
-            cars.splice(cars.indexOf('Mazda'), 0, lastEntry, firstEntry, tabRemoved[0], tabRemoved[1], tabReplaced[0], tabReplaced[1]);
-            console.log(cars);
+        cars[cars.length] = 'Hyundai'; /* ça marche mais c'est ni beau ni propre, non merci */
 
-            /**
-             * 
-             * mini exo tableau :
-             * 
-             * créer un tableau
-             * 
-             * créer un variable avec la donnée '2'
-             * Créer une variable avec la donnée 4
-             * 
-             * les ajouter au tableau
-             * 
-             * faire l'addition des variables du tableau
-             * 
-             * ajouter d'autres variable dont du texte 'texte' et faire l'addition en évitant le texte
-             * 
-            */
-            function addition(tabValeurs){
-                let resultat = 0;
-                for(value of tabValeurs){
-                    if(parseFloat(value)){
-                        resultat = resultat + parseFloat(value);
-                    }
+        cars.push('Seat');
+        cars.push('Fiat', 'Toyota');
+        console.log(cars);
+
+        /* .pop() : extrait le dernier élément d'un tableau */
+
+        let lastEntry = cars.pop();
+        console.log(cars, lastEntry);
+
+        /* .shift() : extrait le premier élément du tableau et réorganise les index */
+
+        let firstEntry = cars.shift();
+        console.log(cars, firstEntry);
+
+        /* .splice() 1 : extraire des éléments du tableau sous forme d'un tableau  */
+        let tabRemoved = cars.splice(1, 2);
+        console.log(cars, tabRemoved);
+
+        /* .splice() 2 : remplacer des éléments du tableau par d'autres élément (et les récupérer sous forme de tableau)  */
+        let tabReplaced = cars.splice(cars.indexOf('Citroën'), 2, 'Alpine', 'Mazda', 'Kya');
+        console.log(cars, tabReplaced);
+
+        /* .splice() 3 : inserrer des éléments dans un tableau  */
+        cars.splice(cars.indexOf('Mazda'), 0, lastEntry, firstEntry, tabRemoved[0], tabRemoved[1], tabReplaced[0], tabReplaced[1]);
+        console.log(cars);
+
+        /**
+         * 
+         * mini exo tableau :
+         * 
+         * créer un tableau
+         * 
+         * créer un variable avec la donnée '2'
+         * Créer une variable avec la donnée 4
+         * 
+         * les ajouter au tableau
+         * 
+         * faire l'addition des variables du tableau
+         * 
+         * ajouter d'autres variable dont du texte 'texte' et faire l'addition en évitant le texte
+         * 
+        */
+        function addition(tabValeurs) {
+            let resultat = 0;
+            for (value of tabValeurs) {
+                if (parseFloat(value)) {
+                    resultat = resultat + parseFloat(value);
                 }
-                return parseFloat(resultat.toFixed(2));
             }
-           
-            let tab = [];
-            let nbTxt = '2';
-            let nb = 4;
-            tab.push(nbTxt, nb);
-            console.log(tab);
-            console.log(addition(tab));
-            tab.push('coucou', 23.1, '25.1');
-            console.log(tab);
+            return parseFloat(resultat.toFixed(2));
+        }
 
-            /* on va transformer la boucle en fonction pour ne pas reproduire du code */
-            console.log(addition(tab));
-            tab.push('45', 22, 3.236);
+        let tab = [];
+        let nbTxt = '2';
+        let nb = 4;
+        tab.push(nbTxt, nb);
+        console.log(tab);
+        console.log(addition(tab));
+        tab.push('coucou', 23.1, '25.1');
+        console.log(tab);
+
+        /* on va transformer la boucle en fonction pour ne pas reproduire du code */
+        console.log(addition(tab));
+        tab.push('45', 22, 3.236);
+        console.log(tab);
+
+        console.log(addition(tab), typeof addition(tab));
+        console.log(Math.round(addition(tab), 2));
+
+        /* comment effecturer un copie d'un tableau */
+
+        /* ça ne crée pas une copie de cars, ça crée un alias de nom du tableau cars */
+        /*
+        let cloneCars = cars;
+
+        */
+
+        /* la fonction slice() permet de copier tout ou partie d'un tableau dans un autre tableau */
+        //let cloneCars = cars.slice(0, Math.round((cars.length)/2)); /* copie la moitié du tableau arrondi au sup */
+        let cloneCars = cars.slice(); /* copie tout le tableau */
+
+        console.log(cars, cloneCars);
+        cloneCars.pop();
+        console.log(cars, cloneCars);
+
+        /* .sort() trie uniquement dans l'ordre croissant les éléments du tableau (qu'ils soit texte, nombre) */
+
+        /* pour trier dans l'ordre décroissant, il faut tout d'abord trier dans l'ordre croissant puis inverser l'ordre des éléments du tableau */
+        console.log(cars.sort().reverse());
+        console.log(cars);
+
+        let texte = 'olalala';
+        let tabTexte = texte.split('').sort().reverse();
+        console.log(tabTexte);
+
+        let texteTriDesc = texte.split('').sort().reverse().join('');
+        console.log(texteTriDesc);
+
+        let carsTest = [['Fiat', 1956], ['Kya', 1995], ['Kya', 1990], ['Ford', 1950]];
+        console.table(carsTest);
+        console.table(carsTest.sort());
+
+        /* les tableaux à 2 voir 3 dimension n'existe pas vraiment en JS */
+        let tab2d = [['a', 'b', 'c'], [12, 13, 12, 15, 14], [10, 23, 56, 4]];
+        console.table(tab2d);
+
+        for(tab of tab2d){
             console.log(tab);
-            
-            console.log(addition(tab), typeof addition(tab));
-            console.log(Math.round(addition(tab), 2));
-            
+            for(value of tab){
+                console.log(value);
+            }
+        }
+
+        /* retrouver une ou des valeurs dans un tableau */
+        /* .find() => retourne la première occurence dans un tableau */
+
+        console.log('--------- .find() ------------');
+        let arrayNum = [5, 8, 12, 130, 5, 3, 44];
+        let found = arrayNum.find(function (element) {
+            return 20 < element;
+            /*
+            if(20 < element){
+                return element;
+            }
+            */
+        });
+        
+        console.log(found);
+        /* pour récupérertous les éléments correpsondant à une condition .filter() */
+        console.log('--------- .find() ------------');
+
+        let foundAll = arrayNum.filter(function(element){
+            return 20 < element;
+        });
+
+        console.log(foundAll);
+
+        /* arrow operator => */
+        /*
+        
+        function(){
+            // code
+        }
+        devient
+        ()=>{
+            //code
+        }
+        
+        function(response){
+            return response.json();
+        }
+        devient
+        response => response.json()
+
+        */
+        
+        let foundAll2 = arrayNum.filter(element => 20 < element);
+
+        console.log(foundAll2);
+
+        /*
+        les fonction de rappel (callback functions) ou fonctions 
+        anonymes génèrent des conséquences quand elles sont trop imbriqués 
+        c'est à surveiller lors de l'utilisation du this d'un objet 
+        dans les méthodes de l'objet
+        */
+
+        console.log('---------------- les conséquences --------------');
+        let monObjet = {
+            numbers: [1, 2, 56, 13, 123],
+            affTab: function () {
+                console.log(this);
+                let _this = this;
+                this.numbers.forEach(function (value) {
+                    console.log(value);
+                    console.log(this);
+                    console.log(_this);
+                    console.log(_this.numbers);
+                });
+            },
+            affTab2: function () {
+                console.log(this);
+                this.numbers.forEach((value) => {
+                    console.log(value);
+                    console.log(this);
+                    console.log(this.numbers);
+                });
+            }
+        };
+
+        console.log(monObjet);
+        monObjet.affTab();
+        monObjet.affTab2();
+
+        /* 
+        créer un tableau avec des fruits et des légumes, avec deux fruits ou légumes en doublons 
+        modifier le tableau pour que : 
+            - les fruits et légumes soient triés par ordre alphabétiques
+            - que les doublons soient supprimés du tableau
+            - qu'on affiche un tableau des doublons et le nombre d'occurence de chaque doublons
+        */
+
+        let fruitEtLegumes = [
+            'fraise',
+            'bananes',
+            'mangue',
+            'choux',
+            'mangue',
+            'courgette',
+            'fraise',
+            'brocoli',
+            'haricot',
+            'mangue'
+        ];
+
+        console.log(fruitEtLegumes);
+        fruitEtLegumes.sort();
+        console.log(fruitEtLegumes);
+        let tabTemp = [];
+        let tabDoublons = [];
+
+        /* 
+        le tableau tabTemp est un fait un tableau dont les clefs sont les nom des fruits plutôt qu'un indice 
+        si la "case" avec une clef n'existe pas, on la crée avec la valeur 1 (le fruit existe une fois)
+        si la "case" avec une clef existe, on augmente de 1 sa valeur
+
+        */
+        fruitEtLegumes.forEach(function (value, index) {
+            if (tabTemp[value] === undefined) {
+                //console.log(tabTemp[value]);
+                tabTemp[value] = 1;
+            } else {
+                //console.log(tabTemp[value]);
+                tabTemp[value] = tabTemp[value] + 1;
+            }
+        });
+
+        /*
+        on vide le tableau de départ
+        */
+        fruitEtLegumes.splice(0, fruitEtLegumes.length);
+        console.log(fruitEtLegumes);
+        /* 
+        pour chaque fruit (key du tableau) de tabTemp
+        */
+        for (key in tabTemp) {
+            /* la "clef" fruit devient une valeur du tableau des fruit */
+            fruitEtLegumes.push(key);
+            /* si la valeur associée à la clef fruit est supérieure à 1, on alimente le tableau des doublons */
+            if (tabTemp[key] > 1) {
+                tabDoublons.push([key, tabTemp[key]]);
+            }
+        }
+
+        console.log(tabTemp);
+        console.log(tabDoublons);
+        console.log(fruitEtLegumes);
+
+        /* c'est mieux d'utiliser la classe Map avec la méthode set */
+        let legumeDoublons = new Map();
+        legumeDoublons.set('fraise', 1);
+        legumeDoublons.set('brocoli', 1);
+
+        console.log(legumeDoublons.get('fraise'));
+
+        
+        
+
     </script>
 </head>
+
 <body>
     <header class="bg-dark" data-bs-theme="dark">
         <div class="container">
