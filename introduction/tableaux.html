@@ -197,7 +197,48 @@
             cars.splice(cars.indexOf('Mazda'), 0, lastEntry, firstEntry, tabRemoved[0], tabRemoved[1], tabReplaced[0], tabReplaced[1]);
             console.log(cars);
 
+            /**
+             * 
+             * mini exo tableau :
+             * 
+             * créer un tableau
+             * 
+             * créer un variable avec la donnée '2'
+             * Créer une variable avec la donnée 4
+             * 
+             * les ajouter au tableau
+             * 
+             * faire l'addition des variables du tableau
+             * 
+             * ajouter d'autres variable dont du texte 'texte' et faire l'addition en évitant le texte
+             * 
+            */
+            function addition(tabValeurs){
+                let resultat = 0;
+                for(value of tabValeurs){
+                    if(parseFloat(value)){
+                        resultat = resultat + parseFloat(value);
+                    }
+                }
+                return parseFloat(resultat.toFixed(2));
+            }
+           
+            let tab = [];
+            let nbTxt = '2';
+            let nb = 4;
+            tab.push(nbTxt, nb);
+            console.log(tab);
+            console.log(addition(tab));
+            tab.push('coucou', 23.1, '25.1');
+            console.log(tab);
+
+            /* on va transformer la boucle en fonction pour ne pas reproduire du code */
+            console.log(addition(tab));
+            tab.push('45', 22, 3.236);
+            console.log(tab);
             
+            console.log(addition(tab), typeof addition(tab));
+            console.log(Math.round(addition(tab), 2));
             
     </script>
 </head>
