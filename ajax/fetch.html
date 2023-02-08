@@ -11,7 +11,74 @@
     <script src="../js/scripts.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', function(){
-            
+            document.querySelectorAll('button.read').forEach(function(btn){
+                //console.log(btn);
+                btn.addEventListener('click', function(){
+                    document.querySelectorAll('button.read').forEach(function(btn){
+                        btn.classList.remove('btn-danger');
+                    });
+                    btn.classList.add('btn-danger');
+                });
+                btn.addEventListener('click', function(){
+                    console.log(btn.dataset);
+                    console.log(btn.dataset.url);
+                    fetch(btn.dataset.url)
+                    .then(function(reponse){
+                        return reponse.json();
+                    })
+                    .then(function(data){
+                        let thead = '';
+                        let tbody = '';
+                        let premierResultat = true;
+
+                        data.forEach(function(user){
+                            tbody = tbody + '<tr>';
+                            if(premierResultat){
+                                thead = thead + '<tr>';
+                            }
+                            for(key in user){
+                                if(premierResultat){
+                                    thead = thead + `<th>${key}</th>`;
+                                }
+                                tbody = tbody + '<td>';
+                                //console.log(key, typeof user[key], user[key]);
+                                if(typeof user[key] !== 'object'){
+                                    //console.log(key, typeof user[key], user[key]);
+                                    tbody = tbody + `${user[key]}<br />`;
+                                }else{
+                                    for(subKey in user[key]){
+                                        if(typeof user[key][subKey] !== 'object'){
+                                            //console.log(subKey, typeof user[key][subKey], user[key][subKey]);
+                                            tbody = tbody + `${subKey} : ${user[key][subKey]} <br />`;
+                                        }
+                                    }
+                                }
+                                tbody = tbody + '</td>';
+                            }
+                            if(premierResultat){
+                                thead = thead + '</th>';
+                                premierResultat = false;
+                                //console.log(thead);
+                            }
+                            tbody = tbody + '</tr>';
+                        });
+                        //console.log(tbody);
+                        document.querySelector('table#result thead').innerHTML = thead;
+                        document.querySelector('table#result tbody').innerHTML = tbody;
+                    })
+                    .catch(function(error){
+                        //console.log(error);
+                        document.querySelector('table#result thead').innerHTML = '';
+                        document.querySelector('table#result tbody').innerHTML = `<tr><td>
+                        Erreur de connexion : ${error}
+                            </td></tr>`;
+                        
+                    })
+                    .finally(function(){
+                        console.log('tentative de connexion terminée');
+                    });
+                });
+            });
         });
     </script>
 </head>
@@ -91,6 +158,12 @@
                         <button class="btn btn-secondary btn-sm read" data-url="../resource/bdd.json">
                             bdd.json
                         </button>
+                        <button class="btn btn-secondary btn-sm read" data-url="../resource/comments.json">
+                            comments.json
+                        </button>
+                        <button class="btn btn-secondary btn-sm read" data-url="../resource/posts.json">
+                            posts.json
+                        </button>
                         <button class="btn btn-secondary btn-sm read" data-url="../resources/users.json">
                             Users.json erreur
                         </button>
@@ -119,7 +192,7 @@
 
                     </thead>
                     <tbody>
-
+                        
                     </tbody>
                 </table>
             </article>

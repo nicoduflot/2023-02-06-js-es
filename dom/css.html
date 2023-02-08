@@ -10,8 +10,35 @@
     <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/scripts.js"></script>
     <script>
-        window.addEventListener('DOMContentLoaded', function(){
-            
+        window.addEventListener('DOMContentLoaded', function () {
+            document.querySelector('#btn').addEventListener('click', function () {
+                let cible = document.querySelector('#cible');
+
+                if (cible.style.color !== '') {
+                    cible.style.color = null;
+                    cible.style.removeProperty('font-weight');
+                } else {
+                    cible.style.setProperty('color', '#aacc00');
+                    cible.style.fontWeight = 'bold';
+                }
+            });
+
+            document.querySelector('#btnClasse').addEventListener('click', function () {
+                document.querySelector('#cibleClasse').classList.toggle('paragraphe-vert');
+            });
+            let carre = document.querySelector('#carre');
+
+            document.querySelector('#gauche').addEventListener('click', function () {
+                carre.className = 'left';
+            });
+            document.querySelector('#droite').addEventListener('click', function () {
+                carre.className = 'right';
+            });
+            document.querySelector('#centre').addEventListener('click', function () {
+                carre.removeAttribute('class');
+            });
+
+
         });
     </script>
 </head>
@@ -85,22 +112,22 @@
                         Ajouter de la couleur
                     </button>
                     <p id="cible">
-                        Lorem ipsum dolor sit, amet consectetur 
-                        adipisicing elit. Numquam explicabo 
-                        deleniti beatae dolores quisquam esse, 
-                        dolorum atque architecto repellat quo ad 
-                        earum laudantium tenetur quidem aliquid 
+                        Lorem ipsum dolor sit, amet consectetur
+                        adipisicing elit. Numquam explicabo
+                        deleniti beatae dolores quisquam esse,
+                        dolorum atque architecto repellat quo ad
+                        earum laudantium tenetur quidem aliquid
                         rem quos voluptatibus a?
                     </p>
                     <button id="btnClasse" class="btn btn-secondary">
                         Ajouter de la couleur en classe
                     </button>
                     <p id="cibleClasse" class="times">
-                        Lorem ipsum dolor sit, amet consectetur 
-                        adipisicing elit. Numquam explicabo 
-                        deleniti beatae dolores quisquam esse, 
-                        dolorum atque architecto repellat quo ad 
-                        earum laudantium tenetur quidem aliquid 
+                        Lorem ipsum dolor sit, amet consectetur
+                        adipisicing elit. Numquam explicabo
+                        deleniti beatae dolores quisquam esse,
+                        dolorum atque architecto repellat quo ad
+                        earum laudantium tenetur quidem aliquid
                         rem quos voluptatibus a?
                     </p>
                     <p class="btn-group" role="group">
@@ -124,4 +151,5 @@
 <script>
     console.log('page chargée');
 </script>
+
 </html>

@@ -41,6 +41,30 @@
             let textContent = document.createTextNode('Coucou');
             divTest.appendChild(textContent);
             document.querySelector('body > main article').prepend(divTest);
+
+            let numSpan = 1;
+
+            document.querySelector('#addSpan').addEventListener('click', function(){
+                let options = {
+                    'class': 'alert alert-success testPan col-2',
+                    'data-test': `${numSpan}`,
+                    'data-click': 'supprime'
+                }
+
+                let newSpan = cEO('span', options);
+                newSpan.appendChild(document.createTextNode(`Div n° ${numSpan}`));
+                newSpan.classList.add('test');
+
+                document.querySelector('#test').appendChild(newSpan);
+
+                newSpan.addEventListener('click', function(){
+                    this.remove();
+                });
+
+                numSpan = numSpan + 1;
+
+            });
+
         });
     </script>
 </head>
