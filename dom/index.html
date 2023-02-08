@@ -11,7 +11,80 @@
     <script src="../js/scripts.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', function(){
-            
+            let mainArticle = document.querySelector('body > main > section > article');
+            console.log(mainArticle);
+            console.log(mainArticle.baseURI);
+            console.log(mainArticle.childNodes);
+            console.log(mainArticle.children);
+            /*
+            mainArticle.childNodes.forEach(function(enfant){
+                console.log(enfant);
+            });
+            */
+
+            let titles = document.querySelectorAll('.titreDeChapitre');
+            console.log(titles);
+            titles.forEach(function(title, key, tab){
+                title.addEventListener('click', function(){
+                    console.log(`
+title.innerText:    ${title.innerText},
+key:                ${key},
+tab:                ${tab},
+this.nodename:      ${this.nodeName}
+                    `);
+                });
+            });
+
+            let ouEstLeCLic = document.querySelector('#ouEstLeCLic');
+
+            document.querySelector('body').addEventListener('click', function(event){
+                ouEstLeCLic.innerHTML = `
+Coordonnées du clic : <br />
+X : ${event.offsetX}<br />
+Y : ${event.offsetY}<br />
+Cible du clic : ${event.target.nodeName}
+                `;
+            });
+
+            let allP = document.querySelectorAll('p:not(#special)');
+            console.log(allP);
+
+            /* 
+            Mini exo
+            quand je clique sur un paragraphe qui n'a 
+            pas l'id spécial, je veux qu'il s'affiche en HTML 
+            dans la div id showP
+            */
+
+            allP.forEach(function(paragraphe){
+                paragraphe.addEventListener('click', function(){
+                    document.querySelector('#showP').innerText = this.innerHTML;
+                });
+            });
+
+            let imgOver = document.querySelector('#imgOver');
+
+            imgOver.addEventListener('mouseover', function(){
+                this.setAttribute('src', '../images/pip-boy-thumb-up.png');
+                this.setAttribute('alt', 'Pip-boy pouce en l\'air');
+                this.parentNode.childNodes.forEach(function(figureChild){
+                    if(figureChild.nodeName === 'FIGCAPTION'){
+                        figureChild.innerHTML = 'Pip-boy pouce en l\'air';
+                    }
+                });
+            });
+
+            imgOver.addEventListener('mouseleave', function(){
+                this.setAttribute('src', '../images/pip-boy-thumb-down.png');
+                this.setAttribute('alt', 'Pip-boy pouce en bas');
+                this.parentNode.childNodes.forEach(function(figureChild){
+                    if(figureChild.nodeName === 'FIGCAPTION'){
+                        figureChild.innerHTML = 'Pip-boy pouce en bas';
+                    }
+                });
+            });
+
+
         });
     </script>
 </head>
@@ -99,11 +172,6 @@
                         <li>Connaître l'élément surveillé l'élément du DOM, de la page</li>
                         <li>Connaître l'événement écouté : le déclencheur</li>
                     </ul>
-                    <p>
-                        <button class="btn btn-secondary" id="checkP">
-                            Tester les paragraphes
-                        </button>
-                    </p>
                     <div id="showP" style="border: 1px solid lightseagreen; border-radius: 5px;">
 
                     </div>
@@ -133,7 +201,4 @@
         </div>
     </footer>
 </body>
-<script>
-    console.log('page chargée');
-</script>
 </html>
