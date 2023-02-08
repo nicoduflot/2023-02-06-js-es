@@ -11,7 +11,36 @@
     <script src="../js/scripts.js"></script>
     <script>
         window.addEventListener('DOMContentLoaded', function(){
-            
+            /* 
+                pour créer un élément on utilise la méthode de document .createElement(<nom de l'élément>);
+                pour ajouter des attributs à cet éléments 
+                element.setAttribute(<attribut a ajouter>, <valeur de l'attribut>) 
+            */
+                    /*
+            let divTest = document.createElement('div');
+            //divTest.setAttribute('class', 'alert alert-danger');
+            divTest.classList.add('alert', 'alert-danger');
+            divTest.setAttribute('data-message', 'coucou');
+            divTest.setAttribute('data-click', 'supprime');
+            let textContent = document.createTextNode('Coucou');
+            divTest.appendChild(textContent);
+            divTest.addEventListener('click', function(){
+                console.log(divTest);
+            });
+
+            document.querySelector('body > main article').prepend(divTest);
+            */
+
+            let options = {
+                'class': 'alert alert-danger',
+                'data-message': 'coucou',
+                'data-click': 'supprime'
+            }
+
+            let divTest = cEO('div', options);
+            let textContent = document.createTextNode('Coucou');
+            divTest.appendChild(textContent);
+            document.querySelector('body > main article').prepend(divTest);
         });
     </script>
 </head>

@@ -20,3 +20,12 @@ function getCookie(name){
     }
     return false;
 }
+
+function cEO(element, attributes = {}){
+    let newElement = document.createElement(element);
+    for(let key in attributes){
+        newElement.setAttribute(key, attributes[key]);
+    }
+    return newElement;
+}
+
