@@ -8,7 +8,74 @@
     <link rel="stylesheet" href="../css/bootstrap.css" />
     <script src="../js/bootstrap.bundle.js"></script>
     <script>
+        console.log('début du chargement de la page');
+        window.addEventListener('DOMContentLoaded', function(){
+            console.log('La page est chargée, on peut agir sur le DOM');
+            /* sessionStorage */
+            let sessionUser = document.querySelector('#sessionUser');
+            let btnSession = document.querySelector('#btnSession');
+            let dataSession = document.querySelector('#dataSession');
+            //console.log(sessionUser);
 
+            /* vérifier la présence de sessionUserName dans sessionStorage */
+            if(sessionStorage.getItem('sessionUserName')){
+                dataSession.innerHTML = `<b>${sessionStorage.getItem('sessionUserName')}</b>`;
+            }else{
+                dataSession.innerHTML = `<b>pas de sessionUserName d'enregistré</b>`;
+            }
+
+            btnSession.addEventListener('click', function(event){
+                if(sessionUser.value !== ''){
+                    sessionStorage.setItem('sessionUserName', sessionUser.value);
+                    dataSession.innerHTML = `<b>${sessionUser.value}</b>`;
+                }
+            });
+            /* mini exercice : supprimer sessionUserName de la session */
+            let btnClearSessionItem = document.querySelector('#btnClearSessionItem');
+            btnClearSessionItem.addEventListener('click', function(){
+                sessionStorage.removeItem('sessionUserName');
+                dataSession.innerHTML = `<b>pas de sessionUserName d'enregistré</b>`;
+            });
+            /* mini exercice : vider la session */
+            let btnClearSession = document.querySelector('#btnClearSession');
+            btnClearSession.addEventListener('click', function(){
+                sessionStorage.clear();
+                dataSession.innerHTML = `<b>session nettoyée</b>`;
+            });
+
+            /* localStorage */
+            let localUser = document.querySelector('#localUser');
+            let btnLocal = document.querySelector('#btnLocal');
+
+            /* vérifier la présence de sessionUserName dans sessionStorage */
+            let dataLocal = document.querySelector('#dataLocal');
+            if(localStorage.getItem('localUserName')){
+                dataLocal.innerHTML = `<b>${localStorage.getItem('localUserName')}</b>`;
+            }else{
+                dataLocal.innerHTML = `<b>pas de localUserName d'enregistré</b>`;
+            }
+
+            //console.log(sessionUser);
+            btnLocal.addEventListener('click', function(event){
+                if(localUser.value !== ''){
+                    localStorage.setItem('localUserName', localUser.value);
+                    dataLocal.innerHTML = `<b>${localUser.value}</b>`;
+                }
+            });
+            /* mini exercice : supprimer sessionUserName de la session */
+            let btnClearLocalItem = document.querySelector('#btnClearLocalItem');
+            btnClearLocalItem.addEventListener('click', function(){
+                localStorage.removeItem('localUserName');
+                dataLocal.innerHTML = `<b>pas de localUserName d'enregistré</b>`;
+            });
+            /* mini exercice : vider la session */
+            let btnClearLocal = document.querySelector('#btnClearLocal');
+            btnClearLocal.addEventListener('click', function(){
+                localStorage.clear();
+                dataLocal.innerHTML = `<b>localStorage vidé</b>`;
+            });
+
+        });
     </script>
 </head>
 
@@ -149,5 +216,7 @@
         </div>
     </footer>
 </body>
-
+<script>
+    console.log('page chargée');
+</script>
 </html>
