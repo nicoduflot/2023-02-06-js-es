@@ -8,134 +8,11 @@
     <link rel="stylesheet" href="../css/bootstrap.css" />
     <script src="../js/bootstrap.bundle.js"></script>
     <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/scripts.js"></script>
     <script>
-        /*
-        assigner dans les variables a, b, et c les valeurs du tableau liste
-        */
-
-        let liste = [1, 2, 3, 4];
-        /*
-        let a = liste[0];
-        let b = liste[1];
-        let c = liste[2];
-        */
-
-        /* avec la destructuration */
-
-        let [a, b, c] = liste;
-        console.log(`a: ${a}, b: ${b}, c: ${c}`);
-
-        let [d, , f, g] = liste;
-        console.log(`d: ${d}, f: ${f}, g: ${g}`);
-
-        let [h, i, j, k = 0, l = 12] = liste;
-        /*
-        let toto = 'haha';
-        let tata = 'hihi';
-        let titi = 'hoho';
-        */
-        let [toto = 'haha', tata = 'hihi', titi = 'hoho'] = [];
-        console.log(toto, tata, titi);
-
-        function truc(unTruc = 12, uneOption = false, ...valeurs) {
-            let [a = 0, b = false, c = 'Compta'] = valeurs;
-            console.log(unTruc, uneOption, a, b, c);
-            console.log(valeurs);
-        }
-
-        truc();
-        truc(13, true, 'RH');
-        truc(13, true, 12, true, 'RH');
-        // [1, 2, 3, 4]
-        let [m, n, o, p, q, r = 6] = liste;
-        console.log(`m: ${m}, n: ${n}, o: ${o}, p: ${p}, q: ${q}, r: ${r}`);
-
-        /*
-        exercice
-        inverser les valeur des deux variables suivantes
-        */
-
-        let number1 = 42;
-        let number2 = 101;
-
-        /*
-        let tmp = number1;
-        number1 = number2;
-        number2 = tmp;
-        */
-        console.log(`avant échange number1 : ${number1}, number2 : ${number2}`);
-        [number1, number2] = [number2, number1];
-        console.log(`après l'échange number1 : ${number1}, number2 : ${number2}`);
-
-        /* la destructuration fonctionne aussi avec les objets, pour les attribute et les méthodes */
-
-        /* la destructuration avec d'objet */
-        let objet = {
-            lastName: 'Sno',
-            firstName: 'Jon',
-            job: 'NightWatch',
-            knowledge: (prenom = 'you', nom = 'Moron') => {
-                return `You know not'in ${prenom} ${nom}`;
-            }
-        };
-
-        console.log(objet.firstName);
-        console.log(objet.lastName);
-        console.log(objet.knowledge(objet.firstName, objet.lastName));
-
-        let { firstName, lastName, job, knowledge } = objet;
-
-        console.log(firstName);
-        console.log(lastName);
-        console.log(knowledge(firstName, lastName));
-
-        let {
-            firstName: prenom,
-            lastName: nom,
-            job: boulot,
-            knowledge: vanne
-        } = objet;
-
-        console.log(prenom);
-        console.log(nom);
-        console.log(vanne(prenom, nom));
-
-        /* on peut donc faire un échange d'attribut ou de méthodes entre des objets en utilisanty la destructuration */
-
-        let personnage1 = {
-            nomHeros: 'LeCanard',
-            prenomHeros: 'Herbert',
-            coupSpecial: function () {
-                return 'Pichenette';
-            }
-        };
-
-        let personnage2 = {
-            nomHeros: 'LeDragon',
-            prenomHeros: 'Marvin',
-            coupSpecial: function () {
-                return 'TongDeum !';
-            }
-        };
-
-        console.log(`
-personnage1.nomHeros: ${personnage1.nomHeros},
-personnage1.coupSpecial: ${personnage1.coupSpecial()}
-
-personnage2.nomHeros: ${personnage2.nomHeros},
-personnage2.coupSpecial: ${personnage2.coupSpecial()}
-        `);
-
-        [personnage1.coupSpecial, personnage2.coupSpecial]=[personnage2.coupSpecial, personnage1.coupSpecial];
-
-        console.log(`
-personnage1.nomHeros: ${personnage1.nomHeros},
-personnage1.coupSpecial: ${personnage1.coupSpecial()}
-
-personnage2.nomHeros: ${personnage2.nomHeros},
-personnage2.coupSpecial: ${personnage2.coupSpecial()}
-        `);
-
+        window.addEventListener('DOMContentLoaded', function(){
+            
+        });
     </script>
 </head>
 
@@ -199,17 +76,54 @@ personnage2.coupSpecial: ${personnage2.coupSpecial()}
     </nav>
     <main class="container">
         <section class="row">
-            <article class="col">
+            <article class="col-lg-12">
                 <header>
-                    <h2>Le destructuration</h2>
+                    <h2 class="titreDeChapitre">Le DOM : Document Object Model</h2>
                 </header>
                 <main>
                     <p>
-                        C'est un mode d'assignation de variables, d'attribut et de méthode d'objet
+                        le <b>DOM</b> nous permet de repérer, analyser, modifier et
+                        supprimer des éléments de la page HTML
                     </p>
                     <p>
-                        Tout est dans la console.
+                        Il faut que tous les éléments soient chargés pour qu'il soit
+                        possible d'agir sur eux avec JS.
+                        On écoute l'évènement de la fenêtre DOMContentLoaded qui survient
+                        quand la page est totalement chargée.
                     </p>
+                    <div id="ouEstLeCLic">
+
+                    </div>
+                    <h3 class="titreDeChapitre">Agir sur le DOM</h3>
+                    <ul>
+                        <li>Connaître l'élément surveillé l'élément du DOM, de la page</li>
+                        <li>Connaître l'événement écouté : le déclencheur</li>
+                    </ul>
+                    <p>
+                        <button class="btn btn-secondary" id="checkP">
+                            Tester les paragraphes
+                        </button>
+                    </p>
+                    <div id="showP" style="border: 1px solid lightseagreen; border-radius: 5px;">
+
+                    </div>
+                    <p id="special">
+                        Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit.
+                        Nihil hic numquam magnam ullam,
+                        ea odio illo doloremque molestias
+                        accusamus corporis corrupti doloribus
+                        ab! Mollitia provident quibusdam libero,
+                        fugit a perferendis.
+                    </p>
+                    <figure>
+                        <img src="../images/pip-boy-thumb-down.png" alt="Pip boy sans le bras droit" width="200"
+                            id="imgOver" />
+                        <figcaption>
+                            Pip boy sans le bras droit
+                        </figcaption>
+                    </figure>
+                </main>
             </article>
         </section>
     </main>
@@ -219,5 +133,7 @@ personnage2.coupSpecial: ${personnage2.coupSpecial()}
         </div>
     </footer>
 </body>
-
+<script>
+    console.log('page chargée');
+</script>
 </html>

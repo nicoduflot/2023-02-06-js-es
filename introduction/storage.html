@@ -7,6 +7,8 @@
     <title>Formation Javascript - Ecmascript 2023-02-06</title>
     <link rel="stylesheet" href="../css/bootstrap.css" />
     <script src="../js/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="../js/scripts.js"></script>
     <script>
         console.log('début du chargement de la page');
         window.addEventListener('DOMContentLoaded', function(){
@@ -68,13 +70,90 @@
                 localStorage.removeItem('localUserName');
                 dataLocal.innerHTML = `<b>pas de localUserName d'enregistré</b>`;
             });
-            /* mini exercice : vider la session */
+            /* mini exercice : vider le local */
             let btnClearLocal = document.querySelector('#btnClearLocal');
             btnClearLocal.addEventListener('click', function(){
                 localStorage.clear();
                 dataLocal.innerHTML = `<b>localStorage vidé</b>`;
             });
 
+            /* Les cookies */
+            /*
+            pour créer un cookie, on va directement écrire le cookie, sa valeur, sa date d'expiration, le niveau de samesite et la securité dans 
+            la liste des cookie : document.cookie
+            */
+
+            console.log(document.cookie);
+
+            //document.cookie = `unCookie=test 2; max-age=30; path=/; Samesite=Strict; Secure`
+            //document.cookie = `unCookie=test 2; expires=<date limite de conservation>; path=/; Samesite=Strict; Secure`
+                
+                /* créer des dates en js */
+                let dateNow = new Date();
+            console.log(dateNow);
+            console.log(dateNow.toLocaleString());
+            console.log(dateNow.toUTCString());
+            console.log(dateNow.getFullYear());
+            console.log(dateNow.getMonth());
+            console.log(dateNow.getMonth()+1);
+            console.log(dateNow.getTime());
+            console.log(dateNow.getTime()+(1000 * 60 * 60 * 24));
+            console.log(dateNow.getTime()+(1000 * 60 * 60 * 24) + (1000 * 60 * 60 * 24 * 365.4));
+            let dateEnd = new Date();
+            dateEnd.setTime(dateEnd.getTime() + (1000 * 60 * 60) + (1000 * 60 * 60 *24));
+            console.log(dateEnd);
+            //console.log(dateEnd.getTime());
+            
+            //document.cookie = `unCookie=testCookieExire; expires=${dateEnd.toUTCString()}; path=/; Samesite=Strict; Secure`
+            
+            /* effacer un cookie */
+            let anteDate = new Date();
+            anteDate.setTime(anteDate.getTime()- (1000 * 60 * 60 * 24));
+            
+            //document.cookie = `unCookie=; expires=${anteDate.toUTCString()}; path=/; Samesite=Strict; Secure`;
+
+            //setCookie('test 2', 'coucou', 1);
+
+            /* récupérer la valeur d'un cookie */
+            //console.log(document.cookie);
+            //console.log(getCookie('test 2'));
+            //setCookie('test 2', 'Hello', 1);
+            //console.log(getCookie('test 2'));
+            //setCookie('test 2');
+
+            let cookieValue = document.querySelector('#cookieValue');
+            let btnCookieValue = document.querySelector('#btnCookieValue');
+            let btnEmptyCookieValue = document.querySelector('#btnEmptyCookieValue');
+            let btnClearCookie = document.querySelector('#btnClearCookie');
+            let dataCookieValue = document.querySelector('#dataCookieValue');
+
+            if(getCookie('monCookie')){
+                dataCookieValue.innerHTML = `<b>${getCookie('monCookie')}</b>`;
+            }else{
+                dataCookieValue.innerHTML = `<b>le cookie "monCookie" n'est pas enregistré</b>`;
+            }
+
+            btnCookieValue.addEventListener('click', function(){
+                if(cookieValue.value !== ''){
+                    setCookie('monCookie', cookieValue.value, 1);
+                    dataCookieValue.innerHTML = `<b>${getCookie('monCookie')}</b>`;
+                    cookieValue.value = '';
+                }
+            });
+
+            btnEmptyCookieValue.addEventListener('click', function(){
+                if(getCookie('monCookie')){
+                    setCookie('monCookie', '', 1);
+                    dataCookieValue.innerHTML = `<b>${getCookie('monCookie')}</b>`;
+                }
+            });
+
+            btnClearCookie.addEventListener('click', function(){
+                if(getCookie('monCookie')){
+                    setCookie('monCookie');
+                    dataCookieValue.innerHTML = `<b>le cookie "monCookie" n'est pas enregistré</b>`;
+                }
+            });
         });
     </script>
 </head>
@@ -111,8 +190,27 @@
                             <li><a class="dropdown-item" href="../introduction/storage.html">Storage</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            DOM
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../dom/index.html">Le DOM</a></li>
+                            <li><a class="dropdown-item" href="../dom/dom.html">Créer dans le DOM</a></li>
+                            <li><a class="dropdown-item" href="../dom/css.html">DOM et CSS</a></li>
+                            <li><a class="dropdown-item" href="../dom/dataset.html">Dataset</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            AJAX
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../ajax/index.html">Promesses</a></li>
+                            <li><a class="dropdown-item" href="../ajax/fetch.html">Fetch</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
